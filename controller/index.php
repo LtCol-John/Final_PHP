@@ -80,17 +80,17 @@ switch ($action) {
             $firstName = $profile[0]['firstName'];
             $lastName = $profile[0]['lastName'];
             $email = $profile[0]['email'];
-            $image = $profile[0]['image'];
+            
 
             //test if image is set or empty, use default if it is
 
             $password = ''; //hide password
-            //take to user profile page if login success
-            $users = get_users();
+            //take to pasture rental page if login success
+            $bidders = get_bidders();
             $logged_in = true;
             $commentview = '';
             $controls = '';
-            include('../View/user_profile.php');
+            include('../View/pastureRental.php');
             break; //break for login success
         }
         
