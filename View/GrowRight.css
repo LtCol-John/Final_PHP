@@ -86,6 +86,12 @@ aside
 	float: right;
 }
 
+#div4{
+    margin-left: 10px;
+    width: 650px;
+    float: left;
+}
+
 form{
 	padding: 10px;
 }

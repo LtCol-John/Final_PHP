@@ -90,6 +90,8 @@ switch ($action) {
             $logged_in = true;
             $commentview = '';
             $controls = '';
+            $bid=0;
+            $total_bid = 0;
             include('../View/pastureRental.php');
             break; //break for login success
         }
@@ -109,13 +111,14 @@ switch ($action) {
             $bid = 0;
         }
         
+        $alias=$_SESSION['alias'];
         
-        $bid = filter_input(INPUT_POST, $bid);
+        $bid = filter_input(INPUT_POST, 'bid');
         
         $total_bid = 42.5*7*$bid;
         
-        
-    ;   
+        include '../View/pastureRental.php';
+        break;   
     case 'user_profile':
         
         
