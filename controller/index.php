@@ -76,7 +76,7 @@ switch ($action) {
 
             //populate variables to show on page
             $_SESSION['alias'] = $alias;
-            $profile = get_user_info($alias);
+            $profile = get_bidders_info($alias);
             $firstName = $profile[0]['firstName'];
             $lastName = $profile[0]['lastName'];
             $email = $profile[0]['email'];
@@ -102,7 +102,20 @@ switch ($action) {
         header('Location: ../controller/index.php?error_message=Log-in failed');
 
         break; //end for login(fail)
-
+        
+    case 'submit_bid':
+    
+        if(!isset($bid)){
+            $bid = 0;
+        }
+        
+        
+        $bid = filter_input(INPUT_POST, $bid);
+        
+        $total_bid = 42.5*7*$bid;
+        
+        
+    ;   
     case 'user_profile':
         
         

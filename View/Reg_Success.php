@@ -20,6 +20,6 @@ and open the template in the editor.
             Congratulations <?php echo $alias; ?>! You are now registered to bid on Buhrmann Farms Pasture
         </h2>
         <br>
-        <a href='../View/Login.php'>Return to Login</a>
+        <a href='../controller/index.php'>Return to Login</a>
     </body>
 </html>

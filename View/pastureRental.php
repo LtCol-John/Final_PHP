@@ -1,8 +1,10 @@
+
+<?php ?>
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Program: Buhrmann Farms Pasture Rental
+Programmer: John Buhrmann
+Date: 10 March 2017
 -->
 <html>
     <head>
@@ -29,15 +31,24 @@ and open the template in the editor.
 <![endif]-->
     </head>
     
-    <body>
+    <body id="wrapper">
         <header>
             <img src="../View/assets/BF_grazingPasture-H3.jpg" alt="map of GrowRight Farms">
         </header>
-        <h2>Buhrmann Farms Pasture Rental</h2>
+        <h1>Buhrmann Farms Pasture Rental</h1>
+        <h2><?php echo $alias; ?></h2>
         <p>The pastures above may be rented for the 2017 grazing season. The two pastures MUST
         be rented as a package. the cumulative area to be rented is 42.5 acres. The bid process is per acre per month multiplied by seven months.  </p>
         <div>
-            
+            <form action="../controller/index.php" method="post">
+                <div>
+                    <span><label>Enter Bid:</label>
+                    <input type="text" name="bid" value="">
+                    <input type="submit"  value="Submit">
+                    <input type="hidden" name="action" value="submit_bid"></span>
+                </div> 
+                
+            </form>
         </div>
         <?php
         // put your code here
