@@ -1,0 +1,140 @@
+
+#wrapper 
+{
+	margin: 0 auto;
+	width: 80%;
+	min-width: 960px;
+	max-width: 1200px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+main 
+{
+	float: right;	
+	
+}
+
+body
+{
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #FC9;
+	margin-left: 160px;
+	padding: 10px;
+}
+
+nav
+{
+	height: 600px;
+	width: 150px;
+	background-color: #ff6633;
+	float: left;
+	
+}
+nav ul
+{
+	list-style-type: none;
+	float: left;
+	width: 100px; 
+	
+}
+
+nav li 
+{
+	display: inline;
+}
+
+nav a 
+{
+	text-decoration: none;
+	padding: 10px;
+	display: block;
+	background-color: #ff6633;
+	float: left;
+}
+
+nav a:link {color: #000000;}
+nav a:hover {color: #ff6600; background-color: #ff3300;}
+nav a:visited {color: #ffffff;}
+
+#div1
+{
+	float: right;	
+}
+
+#div2
+{
+	
+	margin-left: 160px;
+	padding: 10px;
+}
+
+aside
+{
+	float: right;
+	height: 800px;
+	padding: 10px;
+}
+#div3
+{
+	margin-left: 20px;
+	margin-right: 240px;
+	padding-right: 10px;
+	float: right;
+}
+
+form{
+	padding: 10px;
+}
+label{
+	float: left;
+	width: 100px;
+	clear: left;
+	text-align: right;
+	padding-right: 10px;
+	margin-top: 10px;
+}
+input, textarea{
+	margin-top: 10px;
+	display: block;
+}
+ 
+ footer
+ {
+	 text-align: center;
+ }
+ 
+footer ul
+{
+	list-style-type: none;
+}
+
+footer li 
+{
+		display: inline;
+}
+footer a 
+{
+		text-decoration: none;
+}
+#HorzNav ul 
+{
+	list-style-type: none;
+	
+}
+
+#HorzNav li
+{
+	display: inline;
+}
+
+#HorzNav a 
+{
+	float: left;
+	text-decoration: none;
+	padding-right: 10px;
+}
+
