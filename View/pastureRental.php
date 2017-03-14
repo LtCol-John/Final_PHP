@@ -35,11 +35,9 @@ Date: 10 March 2017
         <header>
             <img src="../View/assets/BF_grazingPasture-H3.jpg" alt="map of GrowRight Farms">
             <div>
-                <p>The current bid process ends on: high noon 15 March 2017   </p>
+                <p>The current bid process ends on: 2017 March 15 12:00:00   </p>
                 
-                <p>Time until bidding closes: <?php echo 'end_Time' ?> </p>
-                
-                <p>The current high bid is: $<?php echo sprintf('%f',$total_bid); ?> by: <?php echo $alias ?> at: <?php echo $bidDate?></p>
+                <p>The current high bid is: $<?php echo sprintf('%f',$top_bid); ?> by: <?php echo  $top_bidder ?> at: <?php echo $top_Date?></p>
             </div>
         </header>
         

@@ -84,6 +84,11 @@ switch ($action) {
             $lastName = $profile[0]['lastName'];
             $email = $profile[0]['email'];
             
+            $results=retrieve_hBid();
+            $top_bidder= $results[0][0];
+            $top_bid=$results[0][1];
+            $top_Date=$results[0][2];
+            
 
             //test if image is set or empty, use default if it is
 
@@ -104,6 +109,10 @@ switch ($action) {
             $alias = '';
         }
         $password = '';
+        
+        
+        
+        
         header('Location: ../controller/index.php?error_message=Log-in failed');
 
         break; //end for login(fail)
@@ -123,8 +132,14 @@ switch ($action) {
             $alias = null;
         }
         
-        if(!isset($Date)){
-            $Date = null;
+        if(!isset($bid_Date)){
+            $bid_Date = date('Y-m-d H:i');
+        }
+        $end_Time = date('2017-3-14 12:00');
+        
+        if(($bid_Date)>($end_Time)){
+            
+            include '../View/pastureRental.php';
         }
         
         $alias=$_SESSION['alias'];
@@ -137,9 +152,9 @@ switch ($action) {
         
         date_default_timezone_set('America/Chicago');
         
-        $bidDate = date('Y-m-d H:i');
+        $bid_Date = date('Y-m-d H:i');
         
-        insert_bid($alias, $bid, $bidDate);
+        insert_bid($alias, $bid, $bid_Date);
         
         $bid_Starts=new DateTime();
         
@@ -152,11 +167,11 @@ switch ($action) {
 //        $top_bid = 0;
 //        $top_bidder = '';
 //        $top_Date = date('Y-m-d H:i');
-//        
-//        $results=retrieve_hBid();
-//        $top_bidder= $results[0][0];
-//        $top_bid=$results[0][1];
-//        $top_Date=$results[0][2];
+        $results=retrieve_hBid();
+        $top_bidder= $results[0]['alias'];
+        $top_bid=$results[0]['bid'];
+        $top_Date=$results[0]['bidDate'];
+       
         
         include '../View/pastureRental.php';
         break;   

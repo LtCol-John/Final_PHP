@@ -185,16 +185,18 @@ $dsn = 'mysql:host=localhost;dbname=pasturedb';
     {
         $alias = " ";
         $bid = 0;
-        $Date = null;
+        $bid_Date = date('Y-m-d H:i');
         
         global $db;
         
-        $query = 'select alias, MAX(bid) as "bid", bidDate as "Bid_Date"
-                  from bids';
+        $query = 'select alias, bid, bidDate 
+                  from bids
+                  order by bid desc
+                  limit 1';
         $statement = $db->prepare($query);
         $statement->bindValue(':aliasPlaceholder', $alias);
         $statement->bindValue(':bidPlaceholder', $bid);
-        $statement->bindValue(':DatePlaceholder', $Date);
+        $statement->bindValue(':DatePlaceholder', $bid_Date);
         try{
             $results = $statement->execute();
             }catch(PDOException $e) {
@@ -202,7 +204,7 @@ $dsn = 'mysql:host=localhost;dbname=pasturedb';
             include('database_error.php');
             exit();
                                     }
-        $results = $statement->fetch();
+        $results = $statement->fetchall();
         
         $statement->closeCursor();
         
