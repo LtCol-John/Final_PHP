@@ -35,7 +35,11 @@ Date: 10 March 2017
         <header>
             <img src="../View/assets/BF_grazingPasture-H3.jpg" alt="map of GrowRight Farms">
             <div>
-                <p>The current high bid is: <?php echo $total_bid; ?></p>
+                <p>The current bid process ends on: high noon 15 March 2017   </p>
+                
+                <p>Time until bidding closes: <?php echo 'end_Time' ?> </p>
+                
+                <p>The current high bid is: $<?php echo sprintf('%f',$total_bid); ?> by: <?php echo $alias ?> at: <?php echo $bidDate?></p>
             </div>
         </header>
         
@@ -43,18 +47,24 @@ Date: 10 March 2017
             <h1>Buhrmann Farms Pasture Rental</h1>
             <h2><?php echo $alias; ?></h2>
             <p>The pastures above may be rented for the 2017 grazing season. The two pastures MUST
-            be rented as a package. the cumulative area to be rented is 42.5 acres. The bid process is per acre per month multiplied by seven months.  </p>
+            be rented as a package. the cumulative area to be rented is 42.5 acres. The bid process is per acre for the entire season.  </p>
             <form action="../controller/index.php" method="post">
                 <div>
                     <span><label>Enter Bid:</label>
-                    <input type="text" name="bid" value="<?php echo htmlspecialchars($bid); ?>">
+                    <input type="text" name="bid" value="<?php htmlspecialchars($bid); ?>">
                     <input type="submit"  value="Submit">
                     <input type="hidden" name="action" value="submit_bid"></span>
                 </div>                 
             </form>
         </div>
-        <?php
-        // put your code here
-        ?>
+        <form>
+            <input type="submit" value="Return to Log in">
+            <input type="hidden" name="action" value="default">
+	</form>
+        
+        <form>
+            <input type="submit" value="Log Out">
+            <input type="hidden" name="action" value="log_out">
+	</form>
     </body>
 </html>

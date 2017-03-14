@@ -32,7 +32,7 @@ Programmer: John Buhrmann
         <img src="../View/assets/tractorNancyAndThelma.jpg" alt="tractor Nancy and Thelma" data-caption="Nancy and Thelma on th D-17"  width="650" height="350">
 	
     </header>
-    <body>
+    <body id="wrapper">
         <form action='index.php' method='post'>                       
                     <label>Alias:</label>
                     <input type='text' name='alias'><br>
@@ -44,7 +44,7 @@ Programmer: John Buhrmann
                     <input type='hidden'  name='action' value='login'>
                 </form>
 
-                <form action='index.php'>
+                <form action='index.php' method="post">
                     <input type='submit' value='Register now!' name='register'>
                     <input type='hidden'  name='action' value='register'>
                 </form>

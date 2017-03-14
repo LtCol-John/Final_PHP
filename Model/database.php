@@ -13,6 +13,8 @@ $dsn = 'mysql:host=localhost;dbname=pasturedb';
     $username = 'root';
     $dbpassword = '';
    
+    
+    
 
     try {
         $db= new PDO($dsn, $username, $dbpassword);
@@ -125,7 +127,7 @@ $dsn = 'mysql:host=localhost;dbname=pasturedb';
     }
     
 	//insert new record to user table
-    function insert_bidder($firstName, $lastName, $alias, $password, $email, $image)
+    function insert_bidder($firstName, $lastName, $alias, $password, $email)
     {
 
         global $db;
@@ -154,24 +156,18 @@ $dsn = 'mysql:host=localhost;dbname=pasturedb';
         
     }
     
-    function update_user($firstName, $lastName, $alias, $password, $email)
+    function insert_bid($alias, $bid, $bidDate)
     {
-
         global $db;
-        $query = 'UPDATE users
-                   SET firstName = :firstNamePlaceholder,
-                       lastName = :lastNamePlaceholder,
-                       password = :passwordPlaceholder,
-                       email = :emailPlaceholder
-                   WHERE alias = :aliasPlaceholder';
+        $query = 'INSERT INTO bids
+                   (alias, bid, bidDate)
+                   VALUES
+                   (:aliasPlaceholder, :bidPlaceholder, :bidDatePlaceholder)';
 
         $statement = $db->prepare($query);
-        $statement->bindValue(':firstNamePlaceholder', $firstName);
-        $statement->bindValue(':lastNamePlaceholder', $lastName);
         $statement->bindValue(':aliasPlaceholder', $alias);
-        $statement->bindValue(':passwordPlaceholder', $password);
-        $statement->bindValue(':emailPlaceholder', $email);
-        
+        $statement->bindValue(':bidPlaceholder', $bid);
+        $statement->bindValue(':bidDatePlaceholder', $bidDate);
         
         try{
         $statement->execute();
@@ -185,68 +181,54 @@ $dsn = 'mysql:host=localhost;dbname=pasturedb';
         
     }
     
-    function add_image($alias,$image){
+    function retrieve_hBid()
+    {
+        $alias = " ";
+        $bid = 0;
+        $Date = null;
+        
         global $db;
-        $query = 'UPDATE users
-                   SET image = :imagePlaceholder
-                   WHERE alias = :aliasPlaceholder';
-
+        
+        $query = 'select alias, MAX(bid) as "bid", bidDate as "Bid_Date"
+                  from bids';
         $statement = $db->prepare($query);
-        $statement->bindValue(':imagePlaceholder', $image);
         $statement->bindValue(':aliasPlaceholder', $alias);
+        $statement->bindValue(':bidPlaceholder', $bid);
+        $statement->bindValue(':DatePlaceholder', $Date);
         try{
-            $statement->execute();
-        }catch(PDOException $e) {
+            $results = $statement->execute();
+            }catch(PDOException $e) {
             $error_message = $e->getMessage();
             include('database_error.php');
             exit();
-        }
-       
-        $statement->closeCursor();
-    }
-
-    
-    function get_comments($alias)
-    {
-        global $db;
- 
-      $query = 'SELECT * FROM comments
-                     WHERE alias = :aliasPlaceholder';
-      $statement = $db->prepare($query);
-      $statement->bindValue(':aliasPlaceholder', $alias);
-      $statement->execute();
-      $comments =  $statement->fetchAll();
- 
+                                    }
+        $results = $statement->fetch();
         
-        return $comments;
-    }
-    
-    function insert_comment($alias,$comment,$commentdate,$commenter)
-    {
-
-        global $db;
-        $query = 'INSERT INTO comments
-                   (alias, comment, commentDate, commenter)
-                   VALUES
-                   (:aliasPlaceholder, :commentPlaceholder, :commentDatePlaceholder,:commenterPlaceholder)';
-
-        $statement = $db->prepare($query);
-        $statement->bindValue(':aliasPlaceholder', $alias);
-        $statement->bindValue(':commentPlaceholder', $comment);
-        $statement->bindValue(':commentDatePlaceholder', $commentdate);
-        $statement->bindValue(':commenterPlaceholder', $commenter);
-
-        
-        try{
-            $statement->execute();
-        }catch(PDOException $e) {
-            $error_message = $e->getMessage();
-            include('database_error.php');
-            exit();
-        }
-       
         $statement->closeCursor();
         
+        return $results;
     }
+    
+    function time_diff($dt1,$dt2){
+    $y1 = substr($dt1,0,4);
+    $m1 = substr($dt1,5,2);
+    $d1 = substr($dt1,8,2);
+    $h1 = substr($dt1,11,2);
+    $i1 = substr($dt1,14,2);
+    $s1 = substr($dt1,17,2);    
+
+    $y2 = substr($dt2,0,4);
+    $m2 = substr($dt2,5,2);
+    $d2 = substr($dt2,8,2);
+    $h2 = substr($dt2,11,2);
+    $i2 = substr($dt2,14,2);
+    $s2 = substr($dt2,17,2);    
+
+    $r1=date('U',mktime($h1,$i1,$s1,$m1,$d1,$y1));
+    $r2=date('U',mktime($h2,$i2,$s2,$m2,$d2,$y2));
+    return ($r1-$r2);
+
+}
+
 
 ?>
